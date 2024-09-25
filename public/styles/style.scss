@@ -1,0 +1,104 @@
+*, *::before, *::after{
+    box-sizing: border-box;
+    font-family: 'Poppins';
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+}
+
+textarea{
+    resize: none;
+}
+
+header{
+    width: 100%;
+    background-color: rgb(221, 221, 221);
+    padding: 1em 2em;
+    display: flex;
+    // justify-content: center;
+}
+
+footer{
+    background-color: red;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 10em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addMovieReviewContainer{
+    display: flex;
+    justify-content: center;
+
+    form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 20em;
+    }
+}
+
+.reviewsContainer{
+    width: 85vw;
+    margin-block: 5em 15em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    
+
+    .review{
+        background-color: rgb(236, 236, 236);
+        padding: 2em;
+        display: flex;
+        flex-direction: column;
+
+        margin-block: 1em;
+        
+        .reviewContent{
+            display: flex;
+            flex-direction: row-reverse;
+            gap: 1em;
+    
+            .posterContainer{
+                img{
+                    width: 10em;
+                }
+            }
+        }
+
+        .actionBtns{
+            display: flex;
+            justify-content: space-between;
+
+            button{
+                font-size: 1.1rem;
+                padding: 0.3em 0.6em;
+                border-radius: 0.5em;
+                // border: none;
+            }
+
+            .editBtn{
+                border: 0.25em rgb(129, 207, 122) solid ;
+                background-color: rgb(15, 182, 0);
+            }
+
+            .deleteBtn{
+                border: 0.25em rgb(221, 150, 145) solid ;
+                background-color: rgb(235, 36, 22);
+            }
+        }
+    }
+
+
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=#, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <header>
+        <h1>Movie Reviews</h1>
+    </header>
+    <div class="container">
+        <div class="addMovieReviewContainer">
+            <form class="addReviewForm" action="/add"  method="post">
+                <label for="name">Your Name: </label>
+                <input type="name" name="username" class="username" required>
+                <label for="movieReviewDate">Date of the review: </label>
+                <input type="date" name="movieReviewDate" class="movieReviewDate" required>
+                <label for="movieTitle">Movie Title: </label>
+                <input type="text" name="movieTitle" class="movieTitle" required>
+                <label for="movieRating"> Rating: </label>
+                <input type="number" name="movieRating" class="movieRating" required>
+                <label for="movieReview">Movie Review: </label>
+                <textarea rows="8" cols="50" maxlength="400" required name="movieReview" class="movieReview"></textarea>
+                <button type="submit">Post Review</button>
+            </form>
+        </div>
+        <div class="reviewsContainer">
+            <!-- <%  %> -->
+            
+            <% reviews.forEach(review => { %>
+                <div class="review">
+                    <div class="reviewContent">
+                        <div class="reviewTextContentContainer">
+                            <form action="/edit" method="post">
+                                <input type="text" name="reviewId" value="<%= review.id %>" hidden>
+                                <h1 id="title<%= review.id %>"><%= review.title %></h1>
+                                <h5 id="releasedate<%= review.id %>">Release Date: <%= review.releasedate %></h5>
+                                <h2 id="username<%= review.id %>">Reviewed by: <%= review.username %></h2>
+                                <h3 id="rating<%= review.id %>">Rating: <%= review.rating %></h3>
+                                <label id="ratingLabel<%= review.id %>" for="movieRating" hidden> Rating: </label>
+                                <input id="ratingChange<%= review.id %>" type="number" name="movieRating" class="movieRating" value="<%= review.rating %>" hidden>
+                                <h3 id="reviewdateChange<%= review.id %>">Review Date: <%= review.reviewdate %></h3>
+                                <p id="review<%= review.id %>">Review: <%= review.review %></p>
+                                <label id="reviewLabel<%= review.id %>" for="movieReview" hidden>Movie Review: </label>
+                                <textarea id="reviewChange<%= review.id %>" rows="8" cols="50" maxlength="400" name="movieReview" class="movieReview" hidden><%= review.review %></textarea>
+                                <p>-------------------------------------------------------------</p>
+                                <p>Overview: <%= review.overview %></p>
+                                <button id="submitBtn<%= review.id %>" hidden type="submit">confirm</button></form>
+                            </form>
+                        </div>       
+                        <div class="posterContainer">
+                            <img src="<%= review.posterurl %>" alt="Poster of movie <%= review.title %>">
+                        </div>
+                    </div>
+                    <div class="actionBtns">
+                        <button class="editBtn" id="editBtn<%= review.id %>" onclick="editDisplay('<%= review.id%>')">Edit</button>
+                        </form>
+                        <form action="/delete" method="post">
+                            <input type="text" name="reviewId" hidden value="<%= review.id %>" >
+                            <button class="deleteBtn" type="submit">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            <% }) %>
+            
+        </div>        
+    </div>
+    <footer>
+        <h1>footer</h1>
+    </footer>
+</body>
+<script>
+    function editDisplay(id){
+        console.log(id)
+        document.getElementById('ratingChange'+ id).removeAttribute('hidden')
+        document.getElementById('ratingLabel'+ id).removeAttribute('hidden')
+        document.getElementById('rating'+ id).setAttribute('hidden', true)
+        document.getElementById('reviewChange'+ id).removeAttribute('hidden')
+        // document.getElementById('reviewLabel'+ id).removeAttribute('hidden')
+        document.getElementById('review'+ id).setAttribute('hidden', true)
+        document.getElementById('editBtn'+ id).setAttribute('hidden', true)
+        document.getElementById('submitBtn'+ id).removeAttribute('hidden')
+    }    
+</script>
+</html>
